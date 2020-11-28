@@ -10,19 +10,11 @@ using SFML.Audio;
 
 namespace Mario.Characters
 {
-    public class Ground : CharacterEntity
+    public class Ground : DefaultEntity
     {
-        public Ground(GameObject gameObject)
-            : base(gameObject)
+        public Ground(GameObject gameObject): base(gameObject, "ground")
         {
-            this.Name = "rock";
-            this.SetEntitySpriteSheet(ResourceManager.GetInstance().GetSpriteSheet("ground"));
             this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0 });
-            this.Facing = Direction.NONE;
-            this.IsPlayer = false;
-            this.IsStatic = true;
-            this.Acceleration = 0;
-            this.AllowOffscreen = false;
         }
 
     }

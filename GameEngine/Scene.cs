@@ -19,14 +19,14 @@ namespace GameEngine
         DateTime currentTime = System.DateTime.Now;
         DateTime targetTime = System.DateTime.Now;
         private bool pause = false;
-        protected GameObject _gameObject;
+        protected GameObject gameObject;
         protected Sprite BackSprite;
         public Color BackgroundColor = Color.Black;
         public Level level = new Level();
        
         public Scene(GameObject gameObject)
         {
-            _gameObject = gameObject;
+            this.gameObject = gameObject;
         }
 
         public virtual void Initialize()
@@ -45,21 +45,21 @@ namespace GameEngine
         public void Run()
         {
        
-            while (_gameObject.Window.IsOpen)
+            while (gameObject.Window.IsOpen)
             {
                 currentTime = System.DateTime.Now;
 
-                _gameObject.Window.Clear(this.BackgroundColor);
+                gameObject.Window.Clear(this.BackgroundColor);
 
                 this.DrawBackground();
 
                 if (!pause)
                 {
                     this.Update();
-                    _gameObject.Window.Display();
+                    gameObject.Window.Display();
                 }
 
-                _gameObject.Window.DispatchEvents();
+                gameObject.Window.DispatchEvents();
             }
         }
 
@@ -77,7 +77,7 @@ namespace GameEngine
         {
             BackSprite.Position = new Vector2f(0, 0);
 
-            BackSprite.Draw(_gameObject.Window, RenderStates.Default);
+            BackSprite.Draw(gameObject.Window, RenderStates.Default);
         }
 
         public virtual void Update()
@@ -98,6 +98,9 @@ namespace GameEngine
                 BackSprite.Dispose();
             }
         }
+        
+        
 
+        
     }
 }

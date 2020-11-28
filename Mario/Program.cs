@@ -17,10 +17,16 @@ namespace Mario
             var game = new GameObject("Mario");
 
             ResourceManager.GetInstance().LoadSpriteSheetFromFile("mario", @"resources\mario.png", 10);
+            
             MainScene s = new MainScene(game);
             s.Name = "play"; 
             game.SceneManager.AddScene(s);
-            game.SceneManager.StartScene("play");
+            
+
+            GameOver gameOver = new GameOver(game);
+            gameOver.Name = "gameover";
+            game.SceneManager.AddScene(gameOver);
+            game.SceneManager.StartScene("gameover");
 
         }
     }

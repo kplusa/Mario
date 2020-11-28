@@ -21,22 +21,22 @@ namespace GameEngine
             window.SetVisible(true);
             window.SetVerticalSyncEnabled(true);
             window.SetFramerateLimit(30);
-            window.Closed += _window_Closed;
-            window.KeyPressed += _window_KeyPressed;
-            window.KeyReleased += _window_KeyReleased;
+            window.Closed += windowClosed;
+            window.KeyPressed += windowKeyPressed;
+            window.KeyReleased += windowKeyReleased;
         }
 
-        void _window_KeyPressed(object sender, SFML.Window.KeyEventArgs e)
+        void windowKeyPressed(object sender, SFML.Window.KeyEventArgs e)
         {
             SceneManager.CurrentScene.HandleKeyPress(e);
         }
 
-        void _window_KeyReleased(object sender, SFML.Window.KeyEventArgs e)
+        void windowKeyReleased(object sender, SFML.Window.KeyEventArgs e)
         {
             SceneManager.CurrentScene.HandleKeyReleased(e);
         }
 
-        void _window_Closed(object sender, EventArgs e)
+        void windowClosed(object sender, EventArgs e)
         {
             window.Close();
         }
@@ -45,7 +45,14 @@ namespace GameEngine
         {
             this.window.Close();
         }
-
+        public float GetWindowX()
+        {
+            return window.Size.X;
+        }
+        public float GetWindowY()
+        {
+            return window.Size.Y;
+        }
         public void Dispose()
         {
             Dispose(true);

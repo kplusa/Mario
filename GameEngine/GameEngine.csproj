@@ -60,8 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultEntity.cs" />
     <Compile Include="SpriteSheet.cs" />
-    <Compile Include="CharacterEntity.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Level.cs" />

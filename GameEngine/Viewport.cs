@@ -18,15 +18,15 @@ namespace GameEngine
 
     public class Viewport : IDisposable
     {
-        private GameObject _gameObject;
-        private int _tileHeight = 0;
-        private int _tileWidth = 0;
-        private int _screenWidth = 0;
-        private int _screenHeight = 0;
-        private int _scrollSpeed = 0;
-        private int _screenTilesPerColumn;   
-        private int _screenTilesPerRow;      
-        private Level _level;
+        private GameObject gameObject;
+        private int tileHeight = 0;
+        private int tileWidth = 0;
+        private int screenWidth = 0;
+        private int screenHeight = 0;
+        private int scrollSpeed = 0;
+        private int screenTilesPerColumn;   
+        private int screenTilesPerRow;      
+        private Level level;
         private int originXtile = 0; 
         public int xOffset = 0;     
         private int originYtile = 0; 
@@ -39,7 +39,7 @@ namespace GameEngine
         {
             get 
             {
-                return (_screenTilesPerColumn + originYtile >= _level.GetTileColumns-1);
+                return (screenTilesPerColumn + originYtile >= level.GetTileColumns-1);
             }
 
         }
@@ -54,25 +54,25 @@ namespace GameEngine
         }
         public int TileHeight
         {
-            get { return _tileHeight; }
+            get { return tileHeight; }
         }
 
         public Viewport(GameObject gameObject, int tileHeight, int tileWidth, Level level)
         {
-            _gameObject = gameObject;
-            _screenHeight = (int)gameObject.Window.Size.X;
-            _screenWidth = (int)gameObject.Window.Size.Y;
-            _tileHeight = tileHeight;
-            _tileWidth = tileWidth;
-            _level = level;
+           this.gameObject = gameObject;
+           screenHeight = (int)gameObject.Window.Size.X;
+           screenWidth = (int)gameObject.Window.Size.Y;
+           this.tileHeight = tileHeight;
+           this.tileWidth = tileWidth;
+           this.level = level;
 
-            _screenTilesPerRow = _screenWidth / _tileWidth;
-            _screenTilesPerColumn = _screenHeight / _tileHeight;
+            screenTilesPerRow = screenWidth / tileWidth;
+            screenTilesPerColumn = screenHeight / tileHeight;
         }
 
         public bool Scroll (Direction d, int Speed)
         {
-            _scrollSpeed = Speed;
+            scrollSpeed = Speed;
             return Scroll(d);
         }
 
@@ -82,9 +82,9 @@ namespace GameEngine
             {
                 if (!IsEndOfLevel)
                 {
-                    yOffset = yOffset - _scrollSpeed;
+                    yOffset = yOffset - scrollSpeed;
 
-                    if (yOffset <= -_tileWidth)
+                    if (yOffset <= -tileWidth)
                     {
                         yOffset = 0;
                         originYtile++;
@@ -100,9 +100,9 @@ namespace GameEngine
             {
                 if (!IsStartOfLevel)
                 {
-                    yOffset = yOffset - _scrollSpeed;
+                    yOffset = yOffset - scrollSpeed;
 
-                    if (yOffset > _tileWidth)
+                    if (yOffset > tileWidth)
                     {
                         yOffset = 0;
                         originYtile--;
@@ -126,24 +126,24 @@ namespace GameEngine
             int screenX = 0;
             int screenY = -1;
 
-            for (int x = originXtile; x < _screenTilesPerRow + originXtile; x++)
+            for (int x = originXtile; x < screenTilesPerRow + originXtile; x++)
             {
-                for (int y = originYtile; y < _screenTilesPerColumn + originYtile + 2; y++)
+                for (int y = originYtile; y < screenTilesPerColumn + originYtile + 2; y++)
                 {
-                    if (!_level.Tiles[x, y].Background)
+                    if (!level.Tiles[x, y].Background)
                     {
-                        if (_level.Tiles[x, y].Entity != "")
+                        if (level.Tiles[x, y].Entity != "")
                         {
-                            string entityName = _level.Tiles[x, y].Entity;
-                            if (_level.Tiles[x, y].Static != true)
+                            string entityName = level.Tiles[x, y].Entity;
+                            if (level.Tiles[x, y].Static != true)
                             {
                                 Tile t = new Tile();
                                 t.Background = true;
-                                _level.Tiles[x, y] = t;
+                                level.Tiles[x, y] = t;
                             }
 
                             ScreenLocation sl = TileToScreen(x, y);
-                            Entity e2 = new Entity(this._gameObject);
+                            Entity e2 = new Entity(this.gameObject);
                             e2.Name = entityName;
                             e2.X = sl.X;
                             e2.Y = sl.Y;
@@ -153,11 +153,11 @@ namespace GameEngine
                         }
                         else
                         { 
-                            spBack = new Sprite(ResourceManager.GetInstance().GetTexture(_level.Tiles[x,y].Resource));
-                            int x1 = (_tileHeight * screenY) + yOffset;
-                            int y1 = (_tileWidth * screenX) + xOffset;
+                            spBack = new Sprite(ResourceManager.GetInstance().GetTexture(level.Tiles[x,y].Resource));
+                            int x1 = (tileHeight * screenY) + yOffset;
+                            int y1 = (tileWidth * screenX) + xOffset;
                             spBack.Position = new Vector2f(x1, y1);
-                            spBack.Draw(_gameObject.Window, RenderStates.Default);
+                            spBack.Draw(gameObject.Window, RenderStates.Default);
 
                         }
                         
@@ -176,8 +176,8 @@ namespace GameEngine
         {
             ScreenLocation s = new ScreenLocation();
 
-            s.Y = (row * _tileHeight) * (originXtile+1);
-            s.X = (col * _tileWidth) - ((originYtile+1) * _tileWidth);  
+            s.Y = (row * tileHeight) * (originXtile+1);
+            s.X = (col * tileWidth) - ((originYtile+1) * tileWidth);  
             return s;
         }
 

@@ -30,7 +30,7 @@ namespace GameEngine
         public Texture texture;
         public int TotalFrames = 1;
         public Dictionary<Direction, SpriteFrame> SpriteFrames = new Dictionary<Direction, SpriteFrame>();
-        private int _frameWidth
+        private int frameWidth
         {
             get { return (int)texture.Size.X / TotalFrames; }
         }
@@ -48,14 +48,27 @@ namespace GameEngine
 
             SpriteFrames.Add(d, sf);
         }
+        public IntRect GetSprite(Direction d, int index)
+        {
+            SpriteFrame sf = SpriteFrames[d];
 
+            if (index >= sf.frames.Length)
+                sf.currentframepointer = 0;
+            else
+                sf.currentframepointer = index;
+
+            SpriteFrames[d] = sf;
+
+            return new IntRect(frameWidth * sf.frames[sf.currentframepointer], 0, frameWidth, (int)texture.Size.Y);
+
+        }
         public IntRect GetFirstSprite(Direction d)
         {
             SpriteFrame sf = SpriteFrames[d];
             sf.currentframepointer = 0;
             SpriteFrames[d] = sf;
 
-            return new IntRect(_frameWidth * sf.frames[sf.currentframepointer], 0, _frameWidth, (int)texture.Size.Y);
+            return new IntRect(frameWidth * sf.frames[sf.currentframepointer], 0, frameWidth, (int)texture.Size.Y);
         }
 
         public IntRect GetNextSprite(Direction d)
@@ -68,7 +81,7 @@ namespace GameEngine
 
             SpriteFrames[d] = sf;
 
-            return new IntRect(_frameWidth * sf.frames[sf.currentframepointer], 0, _frameWidth, (int)texture.Size.Y);
+            return new IntRect(frameWidth * sf.frames[sf.currentframepointer], 0, frameWidth, (int)texture.Size.Y);
         }
     }
 

@@ -12,8 +12,11 @@ namespace Mario
 {
     public class MainScene : Scene
     {
-        public CharacterEntity player;
+        public Entity player;
+        public int Lives = 3;
         private readonly string mapFileName = System.IO.Directory.GetCurrentDirectory() + @"\leveldata.xml";
+        Clock coordinatedAnimClock = new Clock();
+        private int coordinatedAnimFramePointer = 0;
 
         public MainScene(GameObject gameObject) : base(gameObject)
         {
@@ -24,7 +27,7 @@ namespace Mario
             this.level.LoadMap(this.mapFileName, 1);
             this.BackgroundColor = this.level.BackgroundColor;
 
-            viewPort = new Viewport(this._gameObject, 64, 64, this.level);
+            viewPort = new Viewport(this.gameObject, 64, 64, this.level);
 
 
             base.Initialize();
@@ -35,7 +38,7 @@ namespace Mario
             this.level.LoadMap(this.mapFileName, 1);
             viewPort.Reset();
             this.Entities.Clear();
-            Characters.Mario mario = new Characters.Mario(this._gameObject);
+            Characters.Mario mario = new Characters.Mario(this.gameObject);
             player = mario;
             this.Entities.Add(player);
             base.Reset();
@@ -62,7 +65,7 @@ namespace Mario
             }
 
             if (e.Code == Keyboard.Key.Escape)
-                this._gameObject.Close();
+                this.gameObject.Close();
 
             base.HandleKeyPress(e);
         }
@@ -77,7 +80,20 @@ namespace Mario
         {
             for (int x = 0; x < Entities.Count; x++)
             {
-                CharacterEntity e = (CharacterEntity)Entities[x];
+                Entity e = (Entity)Entities[x];
+                if (coordinatedAnimClock.ElapsedTime.AsMilliseconds() > 100)
+                {
+                    foreach (Entity cz in Entities.Where(zx => zx.GetType() == typeof(Mario.Characters.CoinBox)))
+                        cz.sprite.TextureRect = cz.EntitySpriteSheet.GetSprite(Direction.NONE, coordinatedAnimFramePointer);
+
+                    foreach (Entity cz in Entities.Where(zx => zx.GetType() == typeof(Mario.Characters.Coin)))
+                        cz.sprite.TextureRect = cz.EntitySpriteSheet.GetSprite(Direction.NONE, coordinatedAnimFramePointer);
+
+                    coordinatedAnimClock.Restart();
+                    coordinatedAnimFramePointer++;
+                    if (coordinatedAnimFramePointer >= e.EntitySpriteSheet.SpriteFrames.Count)
+                        coordinatedAnimFramePointer = 0;
+                }
                 e.Update();
                 e.Draw();
                 if (e.Velocity > viewPort.TileHeight) e.Velocity = viewPort.TileHeight;
@@ -88,13 +104,16 @@ namespace Mario
                 
             }
             ViewportScrollHandler();
+            for (int i = Entities.Count - 1; i >= 0; i--)
+                if (Entities[i].Delete)
+                    Entities.RemoveAt(i);
         }
 
-        private void CheckCharacterCollisions(CharacterEntity e)
+        private void CheckCharacterCollisions(Entity e)
         {
             for (int x = 0; x < Entities.Count; x++)
             {
-                CharacterEntity c = (CharacterEntity)Entities[x];
+                Entity c = (Entity)Entities[x];
                 if (c.IsStatic || c.IgnoreAllCollisions)
                     continue;
 
@@ -150,12 +169,12 @@ namespace Mario
 
         protected void ViewportScrollHandler()
         {         
-            int midScreen = (int)_gameObject.Window.Size.Y / 2;
+            int midScreen = (int)gameObject.Window.Size.Y / 2;
             if (player.IsMoving && player.Facing == Direction.RIGHT && player.X >= midScreen && !viewPort.IsEndOfLevel)
             {
                 player.X = midScreen;
 
-                foreach (CharacterEntity character in _gameObject.SceneManager.CurrentScene.Entities)
+                foreach (Entity character in gameObject.SceneManager.CurrentScene.Entities)
                 {
                     if (!character.IsPlayer && character.Facing == Direction.RIGHT)
                     {
@@ -173,7 +192,7 @@ namespace Mario
             }
             else
             {
-                foreach (CharacterEntity character in _gameObject.SceneManager.CurrentScene.Entities)
+                foreach (Entity character in gameObject.SceneManager.CurrentScene.Entities)
                 {
                     if (!character.IsPlayer && !character.IsStatic)
                     {
@@ -192,13 +211,23 @@ namespace Mario
 
             foreach (Entity e in NewEntities)
             {
-                CharacterEntity c = null;
+                Entity c = null;
 
                 switch (e.Name)
                 {
 
-                    case "ground": c = new Characters.Ground(this._gameObject); break;
-
+                    case "ground": c = new Characters.Ground(this.gameObject); break;
+                    case "brick": c = new Characters.Brick(this.gameObject); break;
+                    case "pipeleftup": c = new Characters.Pipeleftup(this.gameObject); break;
+                    case "piperightup": c = new Characters.Piperightup(this.gameObject); break;
+                    case "pipeleft": c = new Characters.Pipeleft(this.gameObject); break;
+                    case "piperight": c = new Characters.Piperight(this.gameObject); break;
+                    case "coinbox": c = new Characters.CoinBox(this.gameObject); break;
+                    case "emptycoinbox": c = new Characters.EmptyCoinBox(this.gameObject); break;
+                    case "coinbounce": c = new Characters.CoinBounce(this.gameObject); break;
+                    case "block": c = new Characters.Block(this.gameObject); break;
+                    case "goomba": c = new Characters.Goomba(this.gameObject); break;
+                    case "koopatroopa": c = new Characters.KoopaTroopa(this.gameObject); break;
                 }
 
                 c.X = e.X;

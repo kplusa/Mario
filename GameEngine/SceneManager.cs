@@ -27,10 +27,16 @@ namespace GameEngine
 
         public void StartScene(string name)
         {
+            
+
             CurrentScene = scenes[name];
 
             CurrentScene.Reset();
             CurrentScene.Run();
+        }
+        public Scene GetScene(string name)
+        {
+            return scenes[name];
         }
 
     }

@@ -10,8 +10,8 @@ namespace GameEngine
     public class ResourceManager
     {
         private static ResourceManager instance = null;
-        Dictionary<string, Texture> _textures = new Dictionary<string, Texture>();
-        Dictionary<string, SpriteSheet> _spriteSheets = new Dictionary<string, SpriteSheet>();
+        Dictionary<string, Texture> textures = new Dictionary<string, Texture>();
+        Dictionary<string, SpriteSheet> spriteSheets = new Dictionary<string, SpriteSheet>();
 
         public static ResourceManager GetInstance()
         {
@@ -27,33 +27,33 @@ namespace GameEngine
             if(GetTexture(name) == null)
             { 
                 Texture texture = new Texture(path);
-                _textures.Add(name, texture);
+                textures.Add(name, texture);
             }
         }
 
         public Texture GetTexture(string name)
         {
-            if (_textures.ContainsKey(name))
-                return _textures[name];
+            if (textures.ContainsKey(name))
+                return textures[name];
             else return null;
         }
 
         public void LoadSpriteSheetFromFile(string name, string path, int totalFrames)
         {
-            if (!_spriteSheets.ContainsKey(name))
+            if (!spriteSheets.ContainsKey(name))
             {
                 SpriteSheet spriteSheet = new SpriteSheet();
                 spriteSheet.texture = new Texture(path);
                 spriteSheet.TotalFrames = totalFrames;
 
-                _spriteSheets.Add(name, spriteSheet);
+                spriteSheets.Add(name, spriteSheet);
             }
         }
 
         public SpriteSheet GetSpriteSheet(string name)
         {
-            if (_spriteSheets.ContainsKey(name))
-                return _spriteSheets[name];
+            if (spriteSheets.ContainsKey(name))
+                return spriteSheets[name];
             else return null;
         }
 

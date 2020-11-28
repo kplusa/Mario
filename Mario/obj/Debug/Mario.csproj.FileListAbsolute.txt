@@ -124,3 +124,39 @@ C:\Users\kacpe\Desktop\Nowy folder (2)\Mario\obj\Debug\Mario.exe
 C:\Users\kacpe\Desktop\Nowy folder (2)\Mario\obj\Debug\Mario.pdb
 C:\Users\kacpe\Desktop\Nowy folder (2)\Mario\bin\Debug\resources\ground.png
 C:\Users\kacpe\Desktop\Nowy folder (2)\Mario\bin\Debug\resources\mario.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\piperightup.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\leveldata.xml
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\block.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\brick.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\cloud.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\coin.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\coinbounce.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\coinboxx.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\emptycoinbox.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\goomba.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\grass.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\ground.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\koopatroopa.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\left_mountain.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\mario.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\pipeleft.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\pipeleftup.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\piperight.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\right_mountain.png
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\resources\arial.ttf
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\Mario.exe.config
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\Mario.exe
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\Mario.pdb
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\GameEngine.dll
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\sfmlnet-audio-2.dll
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\sfmlnet-graphics-2.dll
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\sfmlnet-system-2.dll
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\sfmlnet-window-2.dll
+D:\studies\Projects\c#\Mario\Mario\bin\Debug\GameEngine.pdb
+D:\studies\Projects\c#\Mario\Mario\obj\Debug\Mario.csprojAssemblyReference.cache
+D:\studies\Projects\c#\Mario\Mario\obj\Debug\Mario.Properties.Resources.resources
+D:\studies\Projects\c#\Mario\Mario\obj\Debug\Mario.csproj.GenerateResource.cache
+D:\studies\Projects\c#\Mario\Mario\obj\Debug\Mario.csproj.CoreCompileInputs.cache
+D:\studies\Projects\c#\Mario\Mario\obj\Debug\Mario.csproj.CopyComplete
+D:\studies\Projects\c#\Mario\Mario\obj\Debug\Mario.exe
+D:\studies\Projects\c#\Mario\Mario\obj\Debug\Mario.pdb
