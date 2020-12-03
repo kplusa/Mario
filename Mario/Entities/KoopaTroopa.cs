@@ -20,6 +20,7 @@ namespace Mario.Characters
             {
                 e.IsJumping = true;
                 e.Velocity = -45;
+                //((MainScene)gameObject.SceneManager.CurrentScene).IncreaseScore(500);
             }
         }
     }

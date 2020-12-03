@@ -17,7 +17,9 @@ namespace Mario
             var game = new GameObject("Mario");
 
             ResourceManager.GetInstance().LoadSpriteSheetFromFile("mario", @"resources\mario.png", 10);
-            
+            StartScene start = new StartScene(game);
+            start.Name = "start";
+            game.SceneManager.AddScene(start);
             MainScene s = new MainScene(game);
             s.Name = "play"; 
             game.SceneManager.AddScene(s);
@@ -26,7 +28,7 @@ namespace Mario
             GameOver gameOver = new GameOver(game);
             gameOver.Name = "gameover";
             game.SceneManager.AddScene(gameOver);
-            game.SceneManager.StartScene("gameover");
+            game.SceneManager.StartScene("start");
 
         }
     }

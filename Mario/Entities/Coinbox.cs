@@ -52,7 +52,8 @@ namespace Mario.Characters
                     Velocity = -20;
                     bumping = true;
                     bumpCount--;
-                   if (bumpCount == 0)
+                    ((MainScene)gameObject.SceneManager.CurrentScene).IncreaseScore(100);
+                    if (bumpCount == 0)
                     {
                         Entity c = new Characters.EmptyCoinBox(this.gameObject);
                         c.X = this.X;

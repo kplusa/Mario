@@ -53,7 +53,7 @@ namespace Mario.Characters
             if (((MainScene)gameObject.SceneManager.CurrentScene).Lives == 0)
                 gameObject.SceneManager.StartScene("gameover");
             else
-                gameObject.SceneManager.StartScene("play");
+                gameObject.SceneManager.StartScene("start");
         }
 
     }

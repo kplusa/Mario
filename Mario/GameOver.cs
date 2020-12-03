@@ -61,10 +61,16 @@ namespace Mario
 
         }
 
-        
 
+        
+        
         public override void DrawBackground()
         {
         }
+        public override void Draw()
+        {
+
+        }
+
     }
 }

@@ -16,11 +16,14 @@ namespace Mario
         public int Lives = 3;
         private readonly string mapFileName = System.IO.Directory.GetCurrentDirectory() + @"\leveldata.xml";
         Clock coordinatedAnimClock = new Clock();
+        private int timeCounter;
+        static System.Windows.Forms.Timer gTimer = new System.Windows.Forms.Timer();
         private int coordinatedAnimFramePointer = 0;
-
+        public int Score = 0;
+        Font arial = new Font(@"resources\arial.ttf");
         public MainScene(GameObject gameObject) : base(gameObject)
         {
-
+            
         }
         public override void Initialize()
         {
@@ -28,8 +31,7 @@ namespace Mario
             this.BackgroundColor = this.level.BackgroundColor;
 
             viewPort = new Viewport(this.gameObject, 64, 64, this.level);
-
-
+            gTimer.Tick += new EventHandler(gameTimerTick);
             base.Initialize();
         }
 
@@ -41,9 +43,29 @@ namespace Mario
             Characters.Mario mario = new Characters.Mario(this.gameObject);
             player = mario;
             this.Entities.Add(player);
+            timeCounter = 400;
+            
+            gTimer.Interval = 1000; 
+            gTimer.Start();
             base.Reset();
+            
         }
 
+        private void gameTimerTick(object obj, EventArgs e)
+        {
+            timeCounter--;
+
+            if (timeCounter == 0)
+            {
+                gTimer.Stop();
+                Characters.Mario mario = (Characters.Mario)Entities.Find(x => x.GetType() == typeof(Characters.Mario));
+                mario.Die();
+            }
+        }
+        public void IncreaseScore(int points)
+        {
+            Score += points;
+        }
         public override void HandleKeyPress(KeyEventArgs e)
         {
             if (e.Code == Keyboard.Key.Right)
@@ -100,15 +122,55 @@ namespace Mario
                 if (e.Velocity < -viewPort.TileHeight) e.Velocity = -viewPort.TileHeight;
                 if (e.Y > -1)
                     CheckCharacterCollisions(e);
+                if (e.X < -100 || e.X > gameObject.Window.Size.X + 100)
+                    e.Delete = true;
 
-                
             }
             ViewportScrollHandler();
+            UpdateTextData();
             for (int i = Entities.Count - 1; i >= 0; i--)
                 if (Entities[i].Delete)
                     Entities.RemoveAt(i);
         }
+        private void UpdateTextData()
+        {
+            Text text = new Text("", arial);
+            string t = "MARIO";
+            text.DisplayedString = t;
+            text.Position = new Vector2f(100, 50);
+            text.Draw(this.gameObject.Window, RenderStates.Default);
 
+            t = Score.ToString("000000");
+            text.DisplayedString = t;
+            text.Position = new Vector2f(100, 80);
+            text.Draw(this.gameObject.Window, RenderStates.Default);
+
+            t = "x " + this.Lives.ToString("00");
+            text.DisplayedString = t;
+            text.Position = new Vector2f(300, 80);
+            text.Draw(this.gameObject.Window, RenderStates.Default);
+
+            t = "WORLD";
+            text.DisplayedString = t;
+            text.Position = new Vector2f(530, 50);
+            text.Draw(this.gameObject.Window, RenderStates.Default);
+
+            t = "1-1";
+            text.DisplayedString = t;
+            text.Position = new Vector2f(560, 80);
+            text.Draw(this.gameObject.Window, RenderStates.Default);
+
+            t = "TIME";
+            text.DisplayedString = t;
+            text.Position = new Vector2f(830, 50);
+            text.Draw(this.gameObject.Window, RenderStates.Default);
+
+            t = timeCounter.ToString();
+            text.DisplayedString = t;
+            text.Position = new Vector2f(850, 80);
+            text.Draw(this.gameObject.Window, RenderStates.Default);
+        }
+       
         private void CheckCharacterCollisions(Entity e)
         {
             for (int x = 0; x < Entities.Count; x++)

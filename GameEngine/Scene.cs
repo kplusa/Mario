@@ -56,6 +56,8 @@ namespace GameEngine
                 if (!pause)
                 {
                     this.Update();
+                    this.Move();
+                    this.Draw();
                     gameObject.Window.Display();
                 }
 
@@ -84,7 +86,15 @@ namespace GameEngine
         {
 
         }
+        public virtual void Move()
+        {
+           
+        }
 
+        public virtual void Draw()
+        {
+         
+        }
         public void Dispose()
         {
             Dispose(true);
