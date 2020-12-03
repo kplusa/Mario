@@ -11,7 +11,8 @@ using SFML.Audio;
 namespace Mario.Characters
 {
     public class Mario : DefaultEntity
-    {     
+    {
+        public bool IsOnFlagpole = false;
         public Mario(GameObject gameObject) : base(gameObject,"mario", 192, 576)
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.RIGHT, new int[] { 5, 6, 7, 9 });
@@ -23,7 +24,6 @@ namespace Mario.Characters
         {
             if (this.Y > this.gameObject.Window.Size.Y - 64)
                 Die();
-
             base.Update();
         }
         public override void OnCharacterCollision(Entity e, Direction d)
@@ -32,24 +32,21 @@ namespace Mario.Characters
                 return;
 
             if (this.Y < e.Y)
-            {
-                
+            {  
                 e.Delete = true;
-
                 this.IsJumping = true;
                 this.Velocity = -45;
             }
             else
             {
+                if (e.GetType() != typeof(Flag))
                     Die();
             }
         }
         public void Die()
         {
             this.IsMoving = false;
-    
             ((MainScene)gameObject.SceneManager.CurrentScene).Lives--;
-
             if (((MainScene)gameObject.SceneManager.CurrentScene).Lives == 0)
                 gameObject.SceneManager.StartScene("gameover");
             else

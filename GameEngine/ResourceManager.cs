@@ -12,6 +12,7 @@ namespace GameEngine
         private static ResourceManager instance = null;
         Dictionary<string, Texture> textures = new Dictionary<string, Texture>();
         Dictionary<string, SpriteSheet> spriteSheets = new Dictionary<string, SpriteSheet>();
+        Dictionary<string, Sound> sound = new Dictionary<string, Sound>();
 
         public static ResourceManager GetInstance()
         {
@@ -56,6 +57,28 @@ namespace GameEngine
                 return spriteSheets[name];
             else return null;
         }
+        public bool LoadSoundFromFile(string name, string path)
+        {
+            if (GetSound(name) == null)
+            {
+                SoundBuffer soundBuffer = new SoundBuffer(path);
+                Sound s = new Sound(soundBuffer);
+                sound.Add(name, s);
+                return true;
+            }
+            return true;
+        }
+        public Sound GetSound(string name)
+        {
+            if (sound.ContainsKey(name))
+                return sound[name];
+            else return null;
+        }
 
+        public void PlaySound(string name)
+        {
+            if (sound.ContainsKey(name))
+                sound[name].Play();
+        }
     }
 }

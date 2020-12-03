@@ -61,7 +61,6 @@ namespace Mario.Characters
                         c.OriginTileCol = this.OriginTileCol;
                         c.OriginTileRow = this.OriginTileRow;
                         ((MainScene)base.gameObject.SceneManager.CurrentScene).Entities.Add(c);
-
                         Tile t = new Tile();
                         t.Entity = "emptycoinbox";
                         t.Frames = 1;
@@ -86,10 +85,6 @@ namespace Mario.Characters
             }
 
             base.OnCharacterCollision(e, d);
-
-
         }
-
-
     }
 }

@@ -46,6 +46,14 @@ namespace GameEngine
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filename);
+            XmlNodeList nodes = doc.DocumentElement.SelectNodes("/levelData/sounds/sound");
+            foreach (XmlNode soundNode in nodes)
+            {
+                string name = soundNode.Attributes["name"].InnerText;
+                string file = @"resources\" + soundNode.Attributes["res"].InnerText;
+                Console.WriteLine(file);
+                ResourceManager.GetInstance().LoadSoundFromFile(name, file);
+            }
 
             this.ID = levelId;
 

@@ -29,10 +29,10 @@ namespace Mario
         {
             this.level.LoadMap(this.mapFileName, 1);
             this.BackgroundColor = this.level.BackgroundColor;
-
             viewPort = new Viewport(this.gameObject, 64, 64, this.level);
             gTimer.Tick += new EventHandler(gameTimerTick);
             base.Initialize();
+            
         }
 
         public override void Reset()
@@ -43,12 +43,13 @@ namespace Mario
             Characters.Mario mario = new Characters.Mario(this.gameObject);
             player = mario;
             this.Entities.Add(player);
+            ResourceManager.GetInstance().PlaySound("music");
             timeCounter = 400;
-            
             gTimer.Interval = 1000; 
             gTimer.Start();
             base.Reset();
-            
+            if (Lives == 3)
+            { Score = 0; }
         }
 
         private void gameTimerTick(object obj, EventArgs e)
@@ -290,6 +291,9 @@ namespace Mario
                     case "block": c = new Characters.Block(this.gameObject); break;
                     case "goomba": c = new Characters.Goomba(this.gameObject); break;
                     case "koopatroopa": c = new Characters.KoopaTroopa(this.gameObject); break;
+                    case "headflag": c = new Characters.Headflag(this.gameObject); break;
+                    case "flag": c = new Characters.Flag(this.gameObject); break;
+                    case "castle": c = new Characters.Castle(this.gameObject); break;
                 }
 
                 c.X = e.X;
