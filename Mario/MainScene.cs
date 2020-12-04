@@ -83,6 +83,7 @@ namespace Mario
 
             if (e.Code == Keyboard.Key.Space && player.IsJumping == false)
             {
+                ResourceManager.GetInstance().PlaySound("jump");
                 player.IsJumping = true;
                 player.Velocity = -55;
             }

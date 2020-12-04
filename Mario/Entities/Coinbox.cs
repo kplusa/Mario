@@ -47,6 +47,7 @@ namespace Mario.Characters
             {
                 if (this.Y + this.sprite.TextureRect.Height <= e.Y + Math.Abs(e.Velocity))
                 {
+                    ResourceManager.GetInstance().GetSound("coin").Play();
                     e.Y = this.Y + this.sprite.TextureRect.Height;
                     e.Velocity = 5;
                     Velocity = -20;

@@ -80,5 +80,10 @@ namespace GameEngine
             if (sound.ContainsKey(name))
                 sound[name].Play();
         }
+        public void StopSound(string name)
+        {
+            if (sound.ContainsKey(name))
+                sound[name].Stop();
+        }
     }
 }

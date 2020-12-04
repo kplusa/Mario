@@ -2,6 +2,10 @@
 <levelData>
   <sounds>
     <sound name='music' res='Soundtrack.wav'></sound>
+  <sound name='die' res='die.wav'></sound>
+  <sound name='coin' res='coin.wav'></sound>
+  <sound name='end_map' res='end_map.wav'></sound>
+  <sound name='jump' res='jump.wav'></sound>
   </sounds>
   <tiles width='64' height='64'>
     <tile id='0' background='true' />

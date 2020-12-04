@@ -35,6 +35,8 @@ namespace Mario.Characters
                 else
                 {
                     m.IsMoving = false;
+                    ResourceManager.GetInstance().GetSound("end_map").Play();
+                    ResourceManager.GetInstance().StopSound("music");
                     m.IsOnFlagpole = true;
 
                 }
