@@ -30,7 +30,6 @@ namespace Mario.Characters
 
                 IsBumpedFromBelow = false;
             }
-
             base.Update();
         }
 

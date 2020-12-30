@@ -39,6 +39,7 @@ namespace Mario.Characters
             {
                 if (this.Y + this.sprite.TextureRect.Height <= e.Y + Math.Abs(e.Velocity))
                 {
+                    ResourceManager.GetInstance().GetSound("bump").Play();
                     e.Y = this.Y + this.sprite.TextureRect.Height;
                     e.Velocity = 5;
                     Velocity = -20;

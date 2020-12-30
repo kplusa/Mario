@@ -56,8 +56,6 @@ namespace GameEngine
             }
         }
 
-        
-
         public void Dispose()
         {
             Dispose(true);
@@ -178,7 +176,6 @@ namespace GameEngine
             {
                 if (this.AutoCycleStaticSpriteSheet && this.entitySpriteSheet.TotalFrames > 1)
                     this.sprite.TextureRect = GetEntitySpriteSheet().GetNextSprite(Direction.NONE);
-
 
                 Viewport v = gameObject.SceneManager.CurrentScene.viewPort;
                 ScreenLocation sl = v.TileToScreen(this.OriginTileRow, this.OriginTileCol);

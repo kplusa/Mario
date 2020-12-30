@@ -161,6 +161,9 @@
     <Content Include="resources\brick.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="resources\bump.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="resources\Castle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
