@@ -20,8 +20,8 @@ namespace Mario.Characters
 
         public CoinBox(GameObject gameObject) : base(gameObject, "coinbox")
         {
-            this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0, 0, 0, 1, 2 });
-            this.AutoCycleStaticSpriteSheet = false;
+            this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0,1, 2 });
+            //this.AutoCycleStaticSpriteSheet = false;
         }
 
         public override void Update()
