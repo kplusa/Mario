@@ -28,14 +28,14 @@ namespace Mario
             GameOver gameOver = new GameOver(game);
             gameOver.Name = "gameover";
             game.SceneManager.AddScene(gameOver);
-<<<<<<< HEAD
-=======
+
+
             
 
             WinScene win = new WinScene(game);
             win.Name = "win";
             game.SceneManager.AddScene(win);
->>>>>>> tmp
+
             game.SceneManager.StartScene("start");
 
         }
