@@ -41,7 +41,11 @@ namespace Mario.Characters
             }
             else
             {
+<<<<<<< HEAD
                 if (e.GetType() != typeof(Flag))
+=======
+                if (e.GetType() != typeof(Headflag))
+>>>>>>> tmp
                     Die();
             }
         }
