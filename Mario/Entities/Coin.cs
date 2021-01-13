@@ -12,13 +12,18 @@ namespace Mario.Characters
 {
     public class Coin : DefaultEntity
     {
+        /**\brief Konstruktor obiektu Coin korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Coin(GameObject gameObject): base(gameObject,"coin")
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0});
             this.IsAffectedByGravity = false;
             this.AutoCycleStaticSpriteSheet = false;
         }
-
+        /**Funkcja odpowiadająca za kolizję z graczem
+        * @param e obiekt gracza
+        * @param d kierunek poruszania się
+            */
         public override void OnCharacterCollision(Entity e, Direction d)
         {
             if (this.Delete)

@@ -18,7 +18,9 @@ namespace GameEngine
         public int Columns;
         public Tile[,] Tiles;
         private string _backgroundColor = "000000";
-
+        /// <summary>
+        /// Metoda ustalająca kolory
+        /// </summary>
         public Color BackgroundColor
         {
             get
@@ -30,7 +32,9 @@ namespace GameEngine
 
             }
         }
-
+        /// <summary>
+        /// Metoda pobierająca wiersze z XML
+        /// </summary>
         public int GetTileColumns
         {
             get { return Tiles.GetUpperBound(1); }
@@ -41,7 +45,11 @@ namespace GameEngine
         {
             
         }
-
+        /// <summary>
+        /// Metoda ładowanie mapy z XML
+        /// </summary>
+        /// <param name="filename">Nazwa pliku</param>
+        /// <param name="levelId">ID poziomu</param>
         public void LoadMap(string filename, int levelId)
         {
             XmlDocument doc = new XmlDocument();
@@ -129,7 +137,13 @@ namespace GameEngine
             }
 
         }
-
+        /// <summary>
+        /// Metoda odpowiadająca za walidację pliku XML
+        /// </summary>
+        /// <param name="doc">dokument</param>
+        /// <param name="rows">ilosc wierszy</param>
+        /// <param name="cols">ilosc kolumn</param>
+        /// <returns>zwraca prawdę po walidacji</returns>
         private bool ValidateXML(XmlDocument doc, int rows, int cols)
         {
             XmlNode node = doc.DocumentElement.SelectSingleNode("/levelData/levels/level[@id='" + this.ID.ToString() + "']/tilemap/rows");

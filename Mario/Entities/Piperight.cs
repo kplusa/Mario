@@ -11,6 +11,8 @@ namespace Mario.Characters
 {
     class Piperight : DefaultEntity
     {
+        /**\brief Konstruktor obiektu Piperight korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Piperight(GameObject gameObject) : base(gameObject, "piperight")
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0 });

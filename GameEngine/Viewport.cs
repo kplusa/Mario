@@ -34,7 +34,9 @@ namespace GameEngine
         public List<Entity> BackSprites = new List<Entity>();
 
         Sprite spBack = new Sprite();
-
+        /// <summary>
+        /// Metoda pomocnicza w określeniu pozycji gracza w stosunku do końcowej flagi
+        /// </summary>
         public bool IsEndOfLevel
         {
             get 
@@ -43,7 +45,9 @@ namespace GameEngine
             }
 
         }
-
+        /// <summary>
+        /// Metoda pomocnicza w określeniu pozycji gracza w stosunku do początku mapy
+        /// </summary>
         public bool IsStartOfLevel
         {
             get
@@ -52,11 +56,20 @@ namespace GameEngine
             }
 
         }
+        /// <summary>
+        /// Metoda zwracająca wysokość klatki
+        /// </summary>
         public int TileHeight
         {
             get { return tileHeight; }
         }
-
+        /// <summary>
+        /// Konstruktor klasy Viewport
+        /// </summary>
+        /// <param name="gameObject">obiekt sceny</param>
+        /// <param name="tileHeight">szerokość kafelka</param>
+        /// <param name="tileWidth">wysokość kafelka</param>
+        /// <param name="level">obiekt Level</param>
         public Viewport(GameObject gameObject, int tileHeight, int tileWidth, Level level)
         {
            this.gameObject = gameObject;
@@ -69,13 +82,22 @@ namespace GameEngine
             screenTilesPerRow = screenWidth / tileWidth;
             screenTilesPerColumn = screenHeight / tileHeight;
         }
-
+        /// <summary>
+        /// Metoda odpowiadająca za przewijanie ekranu
+        /// </summary>
+        /// <param name="d">kierunek</param>
+        /// <param name="Speed">prędkość</param>
+        /// <returns>SCROLL</returns>
         public bool Scroll (Direction d, int Speed)
         {
             scrollSpeed = Speed;
             return Scroll(d);
         }
-
+        /// <summary>
+        /// Metoda odpowiadająca za przewijanie ekranu
+        /// </summary>
+        /// <param name="d">kierunek</param>
+        /// <returns>SCROLL</returns>
         public bool Scroll(Direction d)
         {
             if (d == Direction.RIGHT)
@@ -116,7 +138,10 @@ namespace GameEngine
 
             return false;
         }
-
+        /// <summary>
+        /// Metoda odpowiadająca za renderowanie obrazu
+        /// </summary>
+        /// <returns>List<Entity></returns>
         public List<Entity> Render()
         {
             List<Entity> newEntities = new List<Entity>();
@@ -171,7 +196,12 @@ namespace GameEngine
 
             return newEntities;
         }
-
+        /// <summary>
+        /// Skaluje kafelek na ekran
+        /// </summary>
+        /// <param name="row">wiersze</param>
+        /// <param name="col">kolumny</param>
+        /// <returns>ScreenLocation</returns>
         public ScreenLocation TileToScreen(int row, int col)
         {
             ScreenLocation s = new ScreenLocation();
@@ -180,7 +210,9 @@ namespace GameEngine
             s.X = (col * tileWidth) - ((originYtile+1) * tileWidth);  
             return s;
         }
-
+        /// <summary>
+        /// Metoda reserująca współrzędne kafelka
+        /// </summary>
         public void Reset()
         {
             originYtile = 0;
@@ -188,13 +220,18 @@ namespace GameEngine
             xOffset = 0;
             yOffset = 0;
         }
-
+        /// <summary>
+        /// Metoda oczyszczająca pamięć
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
+        /// <summary>
+        /// Metoda oczyszczająca pamięć
+        /// </summary>
+        /// /// <param name="disposing">pamięć</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

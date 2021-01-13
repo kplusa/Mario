@@ -11,7 +11,9 @@ namespace Mario.Characters
 {
     class Pipeleftup: DefaultEntity
     {
-            public Pipeleftup(GameObject gameObject): base(gameObject, "pipeleftup")
+        /**\brief Konstruktor obiektu Pipeleftup korzystający z klasy DefaultEntity z solucji GameEngine
+         */
+        public Pipeleftup(GameObject gameObject): base(gameObject, "pipeleftup")
             {
                  this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0 });
             }

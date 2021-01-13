@@ -9,8 +9,11 @@ namespace Mario
 {
     static class Program
     {
-        //..
+        
         [STAThread]
+
+        /**\brief MAIN-podstawowa metoda projektu
+          */
         static void Main()
         {
 

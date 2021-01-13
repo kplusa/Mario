@@ -34,19 +34,28 @@ namespace GameEngine
         public bool AllowOffscreen = false;
         public bool IsBumpedFromBelow = false;
         public bool AutoCycleStaticSpriteSheet = true;
+        private SpriteSheet entitySpriteSheet;
+        private Direction facing = Direction.RIGHT;
 
-
+        /**\brief Konstruktor obiektów gry
+         * @param gameObject obiekt sceny
+         */
         public Entity(GameObject gameObject)
         {
            this.gameObject = gameObject;
         }
+        /// <summary>
+        /// Metoda określająca czy obiekt skacze
+        /// </summary>
         public bool HasUpwardVelocity
         {
 
             get { return Math.Sign(this.Velocity) == -1; }
         }
 
-
+        /// <summary>
+        /// Metoda służąca do rysowania
+        /// </summary>
         public virtual void Draw()
         {
             if(Visible)
@@ -55,13 +64,17 @@ namespace GameEngine
                 sprite.Draw(gameObject.Window, RenderStates.Default);
             }
         }
-
+        /// <summary>
+        /// Metoda określająca pozycję
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
+        /// <summary>
+        /// Metoda określająca pozycję
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -69,14 +82,24 @@ namespace GameEngine
                 sprite.Dispose();
             }
         }
+        /// <summary>
+        /// Metoda pobierania grafiki obiektu
+        /// </summary>
+        /// <returns></returns>
         public SpriteSheet GetEntitySpriteSheet()
         { return entitySpriteSheet; }
-
+        /// <summary>
+        /// Metoda ustawiająca wybraną grafikę dla obiektu
+        /// </summary>
+        /// <param name="value"> zmienna okreslajaca grafike</param>
         public void SetEntitySpriteSheet(SpriteSheet value)
         {
             entitySpriteSheet = value;
             this.sprite.Texture = entitySpriteSheet.texture;
         }
+        /// <summary>
+        /// Metoda obslugujaca pobranie i ustawienie grafik obiektow
+        /// </summary>
         public SpriteSheet EntitySpriteSheet
         {
             get { return entitySpriteSheet; }
@@ -86,6 +109,9 @@ namespace GameEngine
                 this.sprite.Texture = entitySpriteSheet.texture;
             }
         }
+        /// <summary>
+        /// Metoda okreslajaca przyspieszenie obiektu na podstawie kierunku
+        /// </summary>
         public Direction Facing
         {
             get { return facing; }
@@ -104,11 +130,12 @@ namespace GameEngine
             }
         }
 
-        private SpriteSheet entitySpriteSheet;
-        private Direction facing = Direction.RIGHT;
-
         
 
+        
+        /// <summary>
+        /// Metoda odpowiadajaca za reakcje obiektu na kolizje
+        /// </summary>
         public virtual void Update()
         {
             if (!Visible) return;
@@ -183,7 +210,11 @@ namespace GameEngine
                 this.Y = sl.Y + Velocity;
             }
         }
-
+        /// <summary>
+        /// Metoda odpowiadajaca za kolizje
+        /// </summary>
+        /// <param name="e">zmienna okreslajaca obiekt</param>
+        /// <param name="d">zmienna okreslajaca kierunek</param>
         public virtual void OnCharacterCollision(Entity e, Direction d)
         {
             if (d == Direction.DOWN)

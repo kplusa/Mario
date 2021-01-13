@@ -13,12 +13,13 @@ namespace Mario.Characters
     public class Brick : DefaultEntity
     {
         private bool bumping = false;
-
+        /**\brief Konstruktor obiektu Brick korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Brick(GameObject gameObject) : base(gameObject,"brick")
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0 });
         }
-
+        /**Funkcja odpowiadająca za ruch uderzonego bloku*/
         public override void Update()
         {
             base.Update();
@@ -32,7 +33,10 @@ namespace Mario.Characters
             else
                 Velocity = 0;
         }
-
+        /**Funkcja odpowiadająca za kolizję z graczem
+        * @param e obiekt gracza
+        * @param d kierunek poruszania się
+            */
         public override void OnCharacterCollision(Entity e, Direction d)
         {
             if (e.IsPlayer && e.HasUpwardVelocity)

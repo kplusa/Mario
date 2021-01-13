@@ -11,6 +11,8 @@ namespace Mario.Characters
 {
     class Pipeleft : DefaultEntity
     {
+        /**\brief Konstruktor obiektu Pipeleft korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Pipeleft(GameObject gameObject) : base(gameObject, "pipeleft")
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0 });

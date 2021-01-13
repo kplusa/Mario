@@ -21,10 +21,17 @@ namespace Mario
         private int coordinatedAnimFramePointer = 0;
         public int Score = 0;
         Font arial = new Font(@"resources\arial.ttf");
+        /// <summary>
+        /// Podstawowy konstruktor
+        /// </summary>
+        /// <param name="gameObject">obiekt sceny</param>
         public MainScene(GameObject gameObject) : base(gameObject)
         {
             
         }
+        /// <summary>
+        /// Inicjacia głównej sceny
+        /// </summary>
         public override void Initialize()
         {
             this.level.LoadMap(this.mapFileName, 1);
@@ -34,7 +41,9 @@ namespace Mario
             base.Initialize();
             
         }
-
+        /// <summary>
+        /// Resetowanie sceny
+        /// </summary>
         public override void Reset()
         {
             this.level.LoadMap(this.mapFileName, 1);
@@ -51,7 +60,11 @@ namespace Mario
             if (Lives == 3)
             { Score = 0; }
         }
-
+        /// <summary>
+        /// Metoda zmieniająca czas w grze
+        /// </summary>
+        /// <param name="obj">obiekt</param>
+        /// <param name="e">event</param>
         private void gameTimerTick(object obj, EventArgs e)
         {
             timeCounter--;
@@ -63,10 +76,18 @@ namespace Mario
                 mario.Die();
             }
         }
+        /// <summary>
+        /// Metoda zwiększająca punkty
+        /// </summary>
+        /// <param name="points">punkty</param>
         public void IncreaseScore(int points)
         {
             Score += points;
         }
+        /// <summary>
+        /// Metoda obsługi klawiatury
+        /// </summary>
+        /// <param name="e">Event klawisza</param>
         public override void HandleKeyPress(KeyEventArgs e)
         {
             if (e.Code == Keyboard.Key.Right)
@@ -93,13 +114,18 @@ namespace Mario
 
             base.HandleKeyPress(e);
         }
-
+        /// <summary>
+        /// Metoda obsługi klawiatury
+        /// </summary>
+        /// <param name="e">Event klawisza</param>
         public override void HandleKeyReleased(KeyEventArgs e)
         {
             if (!player.IsJumping)
                 player.IsMoving = false;
         }
-
+        /// <summary>
+        /// Metoda umieszczająca obiekty na scenie
+        /// </summary>
         public override void Update()
         {
             for (int x = 0; x < Entities.Count; x++)
@@ -134,6 +160,9 @@ namespace Mario
                 if (Entities[i].Delete)
                     Entities.RemoveAt(i);
         }
+        /// <summary>
+        /// Metoda zmieniająca tekst na scenie gry
+        /// </summary>
         private void UpdateTextData()
         {
             Text text = new Text("", arial);
@@ -172,7 +201,10 @@ namespace Mario
             text.Position = new Vector2f(850, 80);
             text.Draw(this.gameObject.Window, RenderStates.Default);
         }
-       
+       /// <summary>
+       /// Metoda sprawdzająca kolizję
+       /// </summary>
+       /// <param name="e">obiekt Entity</param>
         private void CheckCharacterCollisions(Entity e)
         {
             for (int x = 0; x < Entities.Count; x++)
@@ -230,7 +262,9 @@ namespace Mario
             }
 
         }
-
+        /// <summary>
+        /// Metoda odpowiadająca za przewijanie obrazu
+        /// </summary>
         protected void ViewportScrollHandler()
         {         
             int midScreen = (int)gameObject.Window.Size.Y / 2;
@@ -268,7 +302,9 @@ namespace Mario
             }
 
         }
-
+        /// <summary>
+        /// Metoda rysująca tło
+        /// </summary>
         public override void DrawBackground()
         {
             List<Entity> NewEntities = viewPort.Render();

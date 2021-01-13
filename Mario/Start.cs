@@ -14,13 +14,18 @@ namespace Mario
     public class StartScene : Scene
     {
         Text text;
-
+        /// <summary>
+        /// Konstruktor sceny początkowej
+        /// </summary>
+        /// <param name="gameObject">obiekt sceny</param>
         public StartScene(GameObject gameObject) : base(gameObject)
         {
             Color color = new Color(181, 232, 255);
             this.BackgroundColor = color;
         }
-
+        /// <summary>
+        /// Inicjacia sceny początkowej
+        /// </summary>
         public override void Initialize()
         {
             Font arial = new Font(@"resources\arial.ttf");
@@ -30,7 +35,9 @@ namespace Mario
             text.CharacterSize = 30;
 
         }
-
+        /// <summary>
+        /// Resetowanie sceny
+        /// </summary>
         public override void Reset()
         {
             Characters.Mario mario = new Characters.Mario(this.gameObject);
@@ -41,7 +48,10 @@ namespace Mario
 
             base.Reset();
         }
-
+        /// <summary>
+        /// Metoda obsługi klawiatury
+        /// </summary>
+        /// <param name="e">Event klawisza</param>
         public override void HandleKeyPress(KeyEventArgs e)
         {
             if (e.Code == Keyboard.Key.Space)
@@ -54,7 +64,9 @@ namespace Mario
 
             base.HandleKeyPress(e);
         }
-
+        /// <summary>
+        /// Metoda umieszczająca napisy na scenie
+        /// </summary>
         public override void Update()
         {
             string t = "MARIO";
@@ -105,12 +117,17 @@ namespace Mario
 
 
         }
+        /// <summary>
+        /// Metoda rysująca obiekty na scenie
+        /// </summary>
         public override void Draw()
         {
             foreach (Entity e in Entities)
                 e.Draw();
         }
-
+        /// <summary>
+        /// Metoda rysująca tło
+        /// </summary>
         public override void DrawBackground()
         {
         }

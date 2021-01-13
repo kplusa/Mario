@@ -12,8 +12,10 @@ namespace Mario.Characters
 {
     public class Mario : DefaultEntity
     {
-       // Sound jump = new Sound(ResourceManager.GetInstance().GetSound("jump"));
+     
         public bool IsOnFlagpole = false;
+        /**\brief Konstruktor obiektu MArio korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Mario(GameObject gameObject) : base(gameObject,"mario", 192, 576)
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.RIGHT, new int[] { 5, 6, 7, 9 });
@@ -21,12 +23,17 @@ namespace Mario.Characters
             this.GetEntitySpriteSheet().DefineFrames(Direction.JUMPRIGHT, new int[] { 8 });
             this.GetEntitySpriteSheet().DefineFrames(Direction.JUMPLEFT, new int[] { 1 });
         }
+        /**Funkcja odpowiadająca za ruch Mario*/
         public override void Update()
         {
             if (this.Y > this.gameObject.Window.Size.Y - 64)
                 Die();
             base.Update();
         }
+        /**Funkcja odpowiadająca za kolizję z obiektami
+        * @param e obiekt gracza
+        * @param d kierunek poruszania się
+            */
         public override void OnCharacterCollision(Entity e, Direction d)
         {
             if (e.IsStatic || e.IgnorePlayerCollisions)
@@ -49,6 +56,7 @@ namespace Mario.Characters
                     Die();
             }
         }
+        /**Funkcja odpowiadająca za zachowanie gry po kolizji*/
         public void Die()
         {
             this.IsMoving = false;

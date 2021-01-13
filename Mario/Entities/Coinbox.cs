@@ -17,13 +17,14 @@ namespace Mario.Characters
         private bool bumping = false;
         public int bumpCount = 5;
 
-
+        /**\brief Konstruktor obiektu CoinBox korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public CoinBox(GameObject gameObject) : base(gameObject, "coinbox")
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0,1, 2 });
             //this.AutoCycleStaticSpriteSheet = false;
         }
-
+        /**Funkcja odpowiadająca za ruch uderzonego bloku*/
         public override void Update()
         {
             base.Update();
@@ -37,7 +38,10 @@ namespace Mario.Characters
             else
                 Velocity = 0;
         }
-
+        /**Funkcja odpowiadająca za kolizję z graczem oraz zmianę tekstury bloku wraz z dodawaniem punktów
+        * @param e obiekt gracza
+        * @param d kierunek poruszania się
+            */
         public override void OnCharacterCollision(Entity e, Direction d)
         {
             if (this.Delete)

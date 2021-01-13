@@ -9,6 +9,8 @@ namespace Mario.Characters
 {
     class Castle:Entity
     {
+        /**\brief Konstruktor obiektu Castle korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Castle(GameObject gameObject) : base(gameObject)
         {
             this.Name = "castle";

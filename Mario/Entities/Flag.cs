@@ -9,6 +9,8 @@ namespace Mario.Characters
 {
     public class Flag : DefaultEntity
     {
+        /**\brief Konstruktor obiektu Flag korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Flag(GameObject gameObject) : base(gameObject, "flag")
         {
 
@@ -20,6 +22,10 @@ namespace Mario.Characters
 
 
         }
+        /**Funkcja odpowiadająca za kolizję z graczem oraz za zakończenie gry
+        * @param e obiekt gracza
+        * @param d kierunek poruszania się
+            */
         public override void OnCharacterCollision(Entity e, Direction d)
         {
             if (e.IsPlayer)

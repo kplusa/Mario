@@ -14,12 +14,17 @@ namespace Mario
     public class GameOver : Scene
     {
         Text text;
-
+        /// <summary>
+        /// Konstruktor klasy GameOver
+        /// </summary>
+        /// <param name="gameObject">obiekt sceny</param>
         public GameOver(GameObject gameObject) : base(gameObject)
         {
             this.BackgroundColor = Color.Black;
         }
-
+        /// <summary>
+        /// Metoda inicjalizacji sceny GameOver
+        /// </summary>
         public override void Initialize()
         {
             Font arial = new Font(@"resources\arial.ttf");
@@ -29,12 +34,17 @@ namespace Mario
             text.CharacterSize = 30;
 
         }
-
+        /// <summary>
+        /// Metoda reset
+        /// </summary>
         public override void Reset()
         {
            
         }
-
+        /// <summary>
+        /// Metoda obslugi wcisnietego klawisza
+        /// </summary>
+        /// <param name="e">Event klawisza</param>
         public override void HandleKeyPress(KeyEventArgs e)
         {
             if (e.Code == Keyboard.Key.Space)
@@ -47,7 +57,9 @@ namespace Mario
 
             base.HandleKeyPress(e);
         }
-
+        /// <summary>
+        /// Metoda aktualizacji
+        /// </summary>
         public override void Update()
         {
             string t;
@@ -63,10 +75,15 @@ namespace Mario
 
 
         
-        
+        /// <summary>
+        /// Metoda rysowania tla
+        /// </summary>
         public override void DrawBackground()
         {
         }
+        /// <summary>
+        /// Metoda rysowania
+        /// </summary>
         public override void Draw()
         {
 

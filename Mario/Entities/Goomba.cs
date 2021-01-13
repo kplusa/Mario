@@ -9,6 +9,8 @@ namespace Mario.Characters
 {
     public class Goomba : DefaultEntity
     {
+        /**\brief Konstruktor obiektu Goomba korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Goomba(GameObject gameObject):base(gameObject,"goomba",-10)
         {
             this.EntitySpriteSheet.DefineFrames(Direction.RIGHT, new int[] { 0, 1, 2 });
@@ -17,6 +19,7 @@ namespace Mario.Characters
             this.EntitySpriteSheet.DefineFrames(Direction.JUMPLEFT, new int[] { 0 });
             this.Facing = Direction.LEFT;
         }
+        /**Funkcja odpowiadająca za ruch uderzonego obiektu*/
         public override void Update()
         {
             if (IsBumpedFromBelow)
@@ -33,6 +36,10 @@ namespace Mario.Characters
             base.Update();
         }
 
+        /**Funkcja odpowiadająca za kolizję z graczem
+        * @param e obiekt gracza
+        * @param d kierunek poruszania się
+            */
         public override void OnCharacterCollision(Entity e, Direction d)
         {
             base.OnCharacterCollision(e, d);

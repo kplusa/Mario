@@ -12,6 +12,8 @@ namespace Mario.Characters
 {
     public class Ground : DefaultEntity
     {
+        /**\brief Konstruktor obiektu Ground korzystający z klasy DefaultEntity z solucji GameEngine
+         */
         public Ground(GameObject gameObject): base(gameObject, "ground")
         {
             this.GetEntitySpriteSheet().DefineFrames(Direction.NONE, new int[] { 0 });
